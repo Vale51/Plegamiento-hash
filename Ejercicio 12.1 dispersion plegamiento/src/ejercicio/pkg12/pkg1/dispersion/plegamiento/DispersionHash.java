@@ -28,34 +28,27 @@ public class DispersionHash {
   
   
   int plegamiento(long d){
-    long arrDigitos[] = new long[10]; 
     int arrNums[] = new int[5]; // guarda los grupos de digitos
     int resultado = 0;
     
     LinkedList<Long> stack = new LinkedList<>(); //guarda los digitos 
-    Iterator iterador = stack.iterator(); 
-    
-    
-    while(d > 0){
-        stack.push(d % 10);
+      
+    while(d > 0){ //llenar stack
+        stack.push(d % 10); 
         d = d / 10;
     }
-    
-    
-    
-    
-      
+        
     for(int i=0; i<5; i++){
-        for(int j=0; j<4; j++){
-            while(iterador.hasNext())
-            arrNums[i] += stack.pop().intValue()*Math.pow(10,j); //convierte el digito a int y lo guarda, multiplicando por exponente de 10
-            System.out.println("arrNums[" + i + "] = " + arrNums[i]);
+        for(int j=0; j<3; j++){
+            if(!stack.isEmpty()){ //evita operar sin elementos 
+                arrNums[i] += stack.pop().intValue()*Math.pow(10,j); //convierte el digito a int y lo guarda, multiplicando por potencia de 10
+            }
         }
         resultado += arrNums[i];
     }
     
     
-    if(resultado>M){
+    while(resultado>M){
         resultado -= 1000; //si el resultado supera el valor de M, se resta 1000
     }
   
