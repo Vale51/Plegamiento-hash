@@ -7,7 +7,6 @@ package ejercicio.pkg12.pkg1.dispersion.plegamiento;
 
 
 import java.util.LinkedList;
-import java.util.Iterator;
 
 public class DispersionHash {
    
@@ -31,20 +30,20 @@ public class DispersionHash {
     int arrNums[] = new int[5]; // guarda los grupos de digitos
     int resultado = 0;
     
-    LinkedList<Long> stack = new LinkedList<>(); //guarda los digitos 
+    LinkedList<Long> listDigitos = new LinkedList<>(); //guarda los digitos 
       
-    while(d > 0){ //llenar stack
-        stack.push(d % 10); 
+    while(d > 0){ //llenar listDigitos con digitos
+        listDigitos.push(d % 10); 
         d = d / 10;
     }
         
-    for(int i=0; i<5; i++){
+    for(int i=0; i<5; i++){ //en cada posicion de arrNums se guardan 3 digitos
         for(int j=0; j<3; j++){
-            if(!stack.isEmpty()){ //evita operar sin elementos 
-                arrNums[i] += stack.pop().intValue()*Math.pow(10,j); //convierte el digito a int y lo guarda, multiplicando por potencia de 10
+            if(!listDigitos.isEmpty()){ //evita operar sin elementos 
+                arrNums[i] += listDigitos.pop().intValue()*Math.pow(10,j); //convierte el digito a int y lo guarda, multiplicando por potencia de 10
             }
         }
-        resultado += arrNums[i];
+        resultado += arrNums[i]; //se acumulan los valores en arrNums
     }
     
     
